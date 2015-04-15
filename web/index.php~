@@ -1,7 +1,0 @@
-<?php
-require __DIR__.'/../vendor/autoload.php';
-
-$kernel = new \App\kernel\Kernel();
-
-echo "Privet! \n";
-$kernel->init();
