@@ -1,0 +1,9 @@
+{
+    "autoload": {
+        "psr-0": {"App\\":"src/"}
+    }
+
+    "require": {
+        "twig/twig": "~1.0"
+    }
+}
