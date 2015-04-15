@@ -14,7 +14,9 @@ class Kernel {
 
   public function render()
   {
-    echo "Hello, world!";
+    $twig = $this->getTemplateEngine();
+    $template = $twig->loadTemplate('index.html.twig');
+    echo $template->render(array('name' => 'Anna'));
   }
   
   public function getBasePath()
@@ -32,12 +34,13 @@ class Kernel {
     // сохраняем этот экземпляр в приватное свойство templateEngine
     $this->templateEngine = new Twig_Environment($loader, array(
         'cache' => $this->getBasePath() . '/cache/twig',
+        'debug' => true,
     ));
   }
   
   // Возвращает экземпляр шаблонизатора. Вдруг нам он снаружи понадобится ;)
   private function getTemplateEngine()
   {
-    return $this->templateEngine();
+    return $this->templateEngine;
   }
 }
