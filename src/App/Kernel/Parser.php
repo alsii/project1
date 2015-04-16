@@ -1,5 +1,5 @@
 <?php
-namespace App/Kernel;
+namespace App\Kernel;
 
 /**
  * Parser parses a request string by matching it with the set of patterns stored in an array.
@@ -31,12 +31,13 @@ class Parser
 
     foreach($this->patterns as $pattern) {
       $parameters = array();
-      $tokens = $his->tokenize($pattern);
+      $tokens = $this->tokenize($pattern['pattern']);
       
       if(count($tokens) != $fields_number) { // Count of the request fields do not match the tokens count of the current pattern
         continue; // skip current pattern
       }
-      $reset($fields);
+      reset($fields);
+      
       foreach($tokens as $token) {
         
         $match = $this->matchToken(current($fields), $token);
@@ -47,13 +48,13 @@ class Parser
         } else {
           break;
         }
-        next($fields)
+        next($fields);
       }
       
       if($match) {
         return array(
           'controller' => $pattern['controller'].'Controller',
-          'method' => $pattern['action'].'Action',
+          'action' => $pattern['action'].'Action',
           'parameters' => $parameters,
         );
       }
@@ -63,12 +64,13 @@ class Parser
   
   protected function matchToken($field, $token)
   {
-    if(empty($token['name']) {
+    if(empty($token['name'])) {
       if($token['value'] == $field) {
         return true;
       }
     } else {
-      return array($token['name'] => $field)
+      $token['value'] = $field;
+      return $token;
     }
     return false;
   }
@@ -94,6 +96,15 @@ class Parser
   * @param string $pattern Pattern as a string
   */ 
   
+  
+  /*
+   *  /guestbook/:id/delete
+   *
+   *  'guestbook' -> array('name' => '', 'value' => 'guestbook')
+   *  ':id'       -> array('name' => 'id', 'value' => '')
+   *
+   */
+  
   protected function tokenize($pattern)
   {
     $raw_tokens = explode('/', $pattern);
@@ -103,9 +114,9 @@ class Parser
       $first_char = substr($raw_token, 0, 1);
       
       if(':' == $first_char) {
-        $tokens[] = array('name' => $raw_token, 'value' => ''),
+        $tokens[] = array('name' => substr($raw_token,1), 'value' => '');
       } else {
-        $tokens[] = array('name' => '', 'value' => $raw_token),
+        $tokens[] = array('name' => '', 'value' => $raw_token);
       }
     }
     

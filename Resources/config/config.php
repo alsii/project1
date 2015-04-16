@@ -1,9 +1,9 @@
 <?php
 return array(
  'routing' => array(
-    array('/', 'Main', 'index'),
-    array('/guestbook', 'Guestbook', 'list'),
-    array('/guestbook/add', 'Guestbook', 'add'),
-    array('/guestbook/:id/delete', 'delete'),
+    array('pattern' => '/', 'controller' => 'Main', 'action' => 'index'),
+    array('pattern' => '/guestbook', 'controller' => 'Guestbook', 'action' => 'list'),
+    array('pattern' => '/guestbook/add', 'controller' => 'Guestbook', 'action' => 'add'),
+    array('pattern' => '/guestbook/:id/delete', 'controller' => 'Guestbook', 'action' => 'delete'),
  )
-)
+);

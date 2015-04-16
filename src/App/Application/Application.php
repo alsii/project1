@@ -10,6 +10,7 @@ class Application
     {
         $this->kernel = new Kernel();
         $this->kernel->init();
-	$this->kernel->render();
+//	$this->kernel->render('index.html.twig', array('name' => 'Anna'));
+        $this->kernel->route(isset($_SERVER['PATH_INFO'])?$_SERVER['PATH_INFO']:'/');
     }
 }

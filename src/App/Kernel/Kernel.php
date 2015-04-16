@@ -1,5 +1,5 @@
 <?php
-namespace App\kernel;
+namespace App\Kernel;
 use Twig_Loader_Filesystem;
 use Twig_Environment;
 
@@ -14,11 +14,11 @@ class Kernel {
     $this->loadConfig();
   }
 
-  public function render()
+  public function render($template, $parameters = array())
   {
     $twig = $this->getTemplateEngine();
-    $template = $twig->loadTemplate('index.html.twig');
-    echo $template->render(array('name' => 'Anna'));
+    $template = $twig->loadTemplate($template);
+    echo $template->render($parameters);
   }
   
   public function getBasePath()
@@ -42,7 +42,7 @@ class Kernel {
   
   private function loadConfig()
   {
-    $this->config = include($this->getBasePath . 'Resources/config/config.php');
+    $this->config = include($this->getBasePath() . '/Resources/config/config.php');
   }
   
   // Возвращает экземпляр шаблонизатора. Вдруг нам он снаружи понадобится ;)
@@ -51,9 +51,16 @@ class Kernel {
     return $this->templateEngine;
   }
 
-  private function route($requestString) {
+  public function route($requestString) {
     $parser = new Parser($this->config['routing']);
-    $route = $parser->parse($request_string);
-    call_user_func('App/Controller/' . $route['controller'] . '::' . $route['action'], $route['parameters']));
+    $route = $parser->parse($requestString);
+    if($route) {
+      //TODO Check if matched controller (class) and action (method) exist. If not render 'error.html.twig' template.
+      //TODO Create 'error.html.twig' template.
+      //TODO Use Reflection class instead of call_user_func.
+      call_user_func('App\\Controller\\' . $route['controller'] . '::' . $route['action'], $this, $route['parameters']);
+    } else {
+      $this->render('index.html.twig', array('name' => 'Error!!!'));
+    }
   }
 }
