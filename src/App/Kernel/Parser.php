@@ -18,7 +18,7 @@ class Parser
    */
   private $patterns;
 
-  public function setPatterns($patterns)
+  public function __construct($patterns)
   {
     $this->patterns = $patterns;
   }
@@ -27,9 +27,9 @@ class Parser
   public function parse($req)
   {
     $fields = explode('/',$req );
-    $fields_number = count($fields):
+    $fields_number = count($fields);
 
-    foreach($pattern in $this->patterns) {
+    foreach($this->patterns as $pattern) {
       $parameters = array();
       $tokens = $his->tokenize($pattern);
       
@@ -42,9 +42,9 @@ class Parser
         $match = $this->matchToken(current($fields), $token);
         if($match) {
           if(is_array($match)) {
-            $parameters[] = $match; 
+            $parameters[$match['name']] = $match['value']; 
           }
-        } elae {
+        } else {
           break;
         }
         next($fields)

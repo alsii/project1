@@ -53,7 +53,7 @@ class Kernel {
 
   private function route($requestString) {
     $parser = new Parser($this->config['routing']);
-    $route = $parser->parse($_SERVER['PATH_INFO']);
-    call_user_func(array('App/Controller/' . $route['constructor'] . '::' . $route['action'], $route['parameters']));
+    $route = $parser->parse($request_string);
+    call_user_func('App/Controller/' . $route['controller'] . '::' . $route['action'], $route['parameters']));
   }
 }
