@@ -58,9 +58,14 @@ class Kernel {
       //TODO Check if matched controller (class) and action (method) exist. If not render 'error.html.twig' template.
       //TODO Create 'error.html.twig' template.
       //TODO Use Reflection class instead of call_user_func.
-      call_user_func('App\\Controller\\' . $route['controller'] . '::' . $route['action'], $this, $route['parameters']);
+      $action = 'App\\Controller\\' . $route['controller'] . '::' . $route['action'];
+      if(is_callable($action)) {
+        call_user_func($action, $this, $route['parameters']);
+      }else {
+       $this->render('error.html.twig', array('message' => "Routing error!!! Controller or action '$action' is not exist."));
+      }
     } else {
-      $this->render('index.html.twig', array('name' => 'Error!!!'));
+      $this->render('error.html.twig', array('message' => 'Error 404. Page not found.'));
     }
   }
 }
