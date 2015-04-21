@@ -86,5 +86,4 @@ class Kernel {
       return call_user_func($getInstance);
     }
   }
-
 }
