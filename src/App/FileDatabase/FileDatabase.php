@@ -1,5 +1,6 @@
 <?php
-namespace App/FileDatabase;
+namespace App\FileDatabase;
+use App\Kernel\DatabaseInterface
 
 class FileDatabase inplements DatabaseInterface
 {
