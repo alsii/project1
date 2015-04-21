@@ -1,7 +1,7 @@
 <?php
 namespace App\Kernel\Repository;
 
-class FilesystemRepository
+class FilesystemRepository extends Repository
 {
     /**
      * @var \App\Kernel\Kernel
