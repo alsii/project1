@@ -1,8 +1,7 @@
 <?php
-namespace App\FileDatabase;
-use App\Kernel\DatabaseInterface
+namespace App\Kernel\Repository;
 
-class FileDatabase inplements DatabaseInterface
+class FilesystemRepository
 {
     /**
      * @var \App\Kernel\Kernel
