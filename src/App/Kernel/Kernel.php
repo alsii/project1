@@ -57,9 +57,6 @@ class Kernel {
     $parser = new Parser($this->config['routing']);
     $route = $parser->parse($requestString);
     if($route) {
-      //TODO Check if matched controller (class) and action (method) exist. If not render 'error.html.twig' template.
-      //TODO Create 'error.html.twig' template.
-      //TODO Use Reflection class instead of call_user_func.
       $action = 'App\\Controller\\' . $route['controller'] . '::' . $route['action'];
       if(is_callable($action)) {
         call_user_func($action, $this, $route['parameters']);
@@ -70,4 +67,24 @@ class Kernel {
       $this->render('error.html.twig', array('message' => 'Error 404. Page not found.'));
     }
   }
+
+  // возвращает информацию о сущности из кoнфигурации (Resources/config/config.php)
+  // распознает передан ли в качестве параметра экземпляр сущности или строка, содержащая имя сущности
+  public function getEntityInfo($entity)
+  {
+    if(is_object($entity)) {
+      return $config['entities'][get_class($entity)];
+    } elseif (is_string($entity)) {
+      return $config['entities'][$entity];
+    }
+  }
+  
+  public function getEntityRepository($entity)
+  {
+    $getInstance = $this->getEntityInfo($entity)['repository'] . '::getInstance';
+    if(is_callable($getInstance)) {
+      return call_user_func($getInstance);
+    }
+  }
+
 }
