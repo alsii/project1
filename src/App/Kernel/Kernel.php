@@ -23,7 +23,9 @@ class Kernel {
   
   public function getBasePath()
   {
-    return __DIR__.'/../../..';
+    // realpath() возвращает сокращенный путь без ".."
+    // например realpath('/var/www/site1/src/App/Kernel/../../web/download') вернет '/var/www/site1/web/download'
+    return realpath(__DIR__.'/../../..');
   }
   
   private function initTemplateEngine()
