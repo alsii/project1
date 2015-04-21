@@ -27,6 +27,6 @@ class FileDatabase inplements DatabaseInterface
         $filedata = serialize($entity);
         $class = get_class_name($entity);
         
-        $filepath = $kernel->getBasePath() . 'Database/' . $class . '/'; 
+        $filepath = $this->kernel->getBasePath() . 'Database/' . $class . '/'; 
     }
 }
