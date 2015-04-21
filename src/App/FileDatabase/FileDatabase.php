@@ -27,7 +27,10 @@ class FileDatabase inplements DatabaseInterface
         $filename = sha1(microtime());
         $filedata = serialize($entity);
         $class = get_class_name($entity);
+        $filepath = $this->kernel->getBasePath() . '/Database/' . $class . '/';
         
-        $filepath = $this->kernel->getBasePath() . 'Database/' . $class . '/'; 
+        $fp = fopen($filepath . $filename, 'w');
+        fwrite($fp, $filedata);
+        fclose($fp);
     }
 }
