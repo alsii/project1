@@ -8,6 +8,6 @@ return array(
         array('pattern' => '/req/:text', 'controller' => 'Req', 'action' => 'print'),
     ),
     'entities' => array(
-        array('App\Entity\Message' => array ('repository' => 'App\Entity\MessageRepository')),
+        'App\Entity\Message' => array ('repository' => 'App\Entity\MessageRepository'),
     )
 );
