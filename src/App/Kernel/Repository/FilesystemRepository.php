@@ -9,15 +9,6 @@ class FilesystemRepository extends Repository
     private $kernel;
     
     /**
-     * Injects Kernel
-     * @param \App\Kernel\Kernel $kernel
-     */
-    public function __construct($kernel)
-    {
-        $this->kernel = $kernel;
-    }
-    
-    /**
      * Save $entity into file
      * @param mixed $entity
      */
