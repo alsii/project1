@@ -83,7 +83,7 @@ class Kernel {
   {
     $getInstance = $this->getEntityInfo($entity)['repository'] . '::getInstance';
     if(is_callable($getInstance)) {
-      return call_user_func($getInstance);
+      return call_user_func($getInstance)->setKernel($this);
     }
   }
 }
