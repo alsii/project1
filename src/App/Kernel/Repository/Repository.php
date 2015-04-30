@@ -1,4 +1,3 @@
-
 <?php
 namespace App\Kernel\Repository;
 
@@ -6,7 +5,7 @@ namespace App\Kernel\Repository;
 
 class Repository
 {
-    private $instance;
+    private static $instance;
     
     /**
      * @var \App\Kernel\Kernel
@@ -36,7 +35,7 @@ class Repository
      */
     public static function getInstance()
     {
-        if(is_null(self::$instance) {
+        if(is_null(self::$instance)) {
             self::$instance = new self();            
         }
         return self::$instance;

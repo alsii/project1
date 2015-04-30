@@ -73,15 +73,16 @@ class Kernel {
   public function getEntityInfo($entity)
   {
     if(is_object($entity)) {
-      return $config['entities'][get_class($entity)];
+      return $this->config['entities'][get_class($entity)];
     } elseif (is_string($entity)) {
-      return $config['entities'][$entity];
+      return $this->config['entities'][$entity];
     }
   }
   
   public function getEntityRepository($entity)
   {
     $getInstance = $this->getEntityInfo($entity)['repository'] . '::getInstance';
+    var_dump($getInstance);
     if(is_callable($getInstance)) {
       return call_user_func($getInstance)->setKernel($this);
     }
