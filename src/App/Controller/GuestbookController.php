@@ -22,13 +22,15 @@ class GuestbookController
     $msgRepo->save($msg);
       
     $kernel->render('guestbook.html.twig');
+    $url = $kernel->buildUrl('guestbook_list');
+    return $kernel->redirect($url);
   }
 
   public function listAction($kernel, $param)
   {
     $messageRepo = $kernel->getEntityRepository("App\\Entity\\Message");
-    $messages = $messageRepo->getAll();
-    $kernel->render('guestbook.html.twig', array('messages' => $messages, 'error' => 'none'));
+    $messages = $messageRepo->getAllSortedByDate();
+    return $kernel->render('guestbook.html.twig', array('messages' => $messages, 'error' => 'none'));
   }
   
 }

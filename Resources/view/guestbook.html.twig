@@ -8,7 +8,7 @@
 <table>
 {% for msg in messages %}
 <tr>
-<td>{{msg.datetim|date('d.m.Y') }}</td>
+<td>{{msg.datetime|date('d.m.Y H:i:s') }}</td>
 <td>{{msg.user}}</td>
 <td>{{msg.text}}</td>
 </tr>

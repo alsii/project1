@@ -7,7 +7,7 @@ class ReqController
 {
   public function printAction($kernel,$param)
     {
-        $kernel->render('req.html.twig', array('message'=>$param['text']));
+        return $kernel->render('req.html.twig', array('message'=>$param['text']));
     }
 }
           

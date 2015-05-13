@@ -6,6 +6,7 @@ namespace App\Kernel;
  * Each pattern is an array of the following structure:
  * 
  * array(
+     'name' => string // Route name
  *   'pattern' => string // Pattern string
  *   'controller' => string // Controller name without 'Controller' suffix
  *   'action' => string // Action name without 'Action' suffix
@@ -23,7 +24,7 @@ class Parser
     $this->patterns = $patterns;
   }
   
-  //TODO This method to be refactored. Extract the internal loop into a separate method.
+  //TODO This method is to be refactored. Extract the internal loop into a separate method.
   public function parse($req)
   {
     $fields = explode('/',$req );
@@ -62,6 +63,38 @@ class Parser
     return false;
   }
   
+  /**
+   * Формирует URL по заданному маршруту и параметрам
+   */
+  public function buildUrl($routeName, $parameters)
+  {
+    foreach($this->patterns as $pattern) {
+      if(isset($pattern['name']) && $pattern['name'] == $routeName) {
+        $route = $pattern;
+        break;
+      }
+    }
+    
+    if(!isset($route)) {
+      throw new \Exception("Route $routeName not found.");
+    }
+    
+    $url = $route['pattern'];
+    $tokens = $this->tokenize($url);
+
+    foreach($tokens as $token) {
+      if(!(empty($token['name']))) {
+        $name = $token['name'];
+        if(!isset($parameters[$name])) {
+          throw new \Exception("Parameter '{$name}' is not set for route '$routeName'");
+        }
+        $url = str_replace(":$name", $parameters['name'], $url);
+      }
+    }    
+    
+    return $_SERVER['SCRIPT_NAME'] . $url;
+  }
+  
   protected function matchToken($field, $token)
   {
     if(empty($token['name'])) {
@@ -92,18 +125,16 @@ class Parser
   *   'value' => string // empty string for Parameter-Token or 'path' value of Path-Token 
   * )
   *
+  * Example:
+  *  /guestbook/:id/delete
+  *
+  *  'guestbook' -> array('name' => '', 'value' => 'guestbook')
+  *  ':id'       -> array('name' => 'id', 'value' => '')
+  *
+  *
   * @return array Tokenized pattern
   * @param string $pattern Pattern as a string
-  */ 
-  
-  
-  /*
-   *  /guestbook/:id/delete
-   *
-   *  'guestbook' -> array('name' => '', 'value' => 'guestbook')
-   *  ':id'       -> array('name' => 'id', 'value' => '')
-   *
-   */
+  */
   
   protected function tokenize($pattern)
   {

@@ -14,7 +14,7 @@ class FilesystemRepository extends Repository
 //        $class = str_replace('\\', DIRECTORY_SEPARATOR, get_class($entity));
 //        $filepath = $this->kernel->getBasePath() . DIRECTORY_SEPARATOR . 'Database' . DIRECTORY_SEPARATOR . $class;
         $filepath = $this->getEntityDirectory();
-        echo $filepath;
+//        echo $filepath;
         if(!is_dir($filepath)) {
             mkdir($filepath, 0777, true);
         }
