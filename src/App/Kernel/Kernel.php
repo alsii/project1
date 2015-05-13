@@ -68,23 +68,29 @@ class Kernel {
     }
   }
 
-  // возвращает информацию о сущности из кoнфигурации (Resources/config/config.php)
-  // распознает передан ли в качестве параметра экземпляр сущности или строка, содержащая имя сущности
+  /**
+   * Возвращает информацию о сущности из кoнфигурации (Resources/config/config.php)
+   * Распознает передан ли в качестве параметра экземпляр сущности или строка, содержащая имя сущности
+   */
   public function getEntityInfo($entity)
   {
     if(is_object($entity)) {
-      return $this->config['entities'][get_class($entity)];
-    } elseif (is_string($entity)) {
-      return $this->config['entities'][$entity];
+      $entity = get_class($entity);
     }
+    $info = $this->config['entities'][$entity];
+    $info['name'] = $entity;
+    return $info;
   }
   
   public function getEntityRepository($entity)
   {
-    $getInstance = $this->getEntityInfo($entity)['repository'] . '::getInstance';
-    var_dump($getInstance);
-    if(is_callable($getInstance)) {
-      return call_user_func($getInstance)->setKernel($this);
+    $entityInfo = $this->getEntityInfo($entity);
+    if(is_callable(array($entityInfo['repository'], 'getInstance'), false, $getInstance)) {
+      $repo = call_user_func($getInstance);
+      $repo
+        ->setKernel($this)
+        ->setEntityName($entityInfo['name']);
+      return $repo;   
     }
   }
 }

@@ -5,6 +5,15 @@
 <title>Guestbook</title>
 </head>
 <body>
+<table>
+{% for msg in messages %}
+<tr>
+<td>{{msg.datetim|date('d.m.Y') }}</td>
+<td>{{msg.user}}</td>
+<td>{{msg.text}}</td>
+</tr>
+{% endfor %}
+</table>
 <form action="/app.php/guestbook/add" method="post">
 <p>Пользователь: <input name="user"></p>
 <p>Сообщение: <input type="text" name="message"></p>
