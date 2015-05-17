@@ -92,7 +92,8 @@ class Parser
       }
     }    
     
-    return $_SERVER['SCRIPT_NAME'] . $url;
+//    return $_SERVER['SCRIPT_NAME'] . $url;
+    return $url;
   }
   
   protected function matchToken($field, $token)

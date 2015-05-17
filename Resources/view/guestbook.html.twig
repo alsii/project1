@@ -1,10 +1,5 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Guestbook</title>
-</head>
-<body>
+{% extends "base_layout.html.twig" %}
+{% block content %}
 <table>
 {% for msg in messages %}
 <tr>
@@ -14,10 +9,9 @@
 </tr>
 {% endfor %}
 </table>
-<form action="/app.php/guestbook/add" method="post">
+<form action="/guestbook/add" method="post">
 <p>Пользователь: <input name="user"></p>
 <p>Сообщение: <input type="text" name="message"></p>
 <p><input type="submit" name="send"></p>
 </form>
-</body>
-</html>
+{% endblock %}

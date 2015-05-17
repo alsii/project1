@@ -1,308 +1,135 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Name       : Open-Air
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20120818
+-->
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
-<title>Название сайта</title>
-<link href="css/style.css" type="text/css" rel="stylesheet" />
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Construction Company</title>
+<link href="http://fonts.googleapis.com/css?family=Oswald:400,300" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
-
 <body>
-<div style="position:absolute;left:-3072px;top:0"><div class="width=100% height=100% align-left"></div><div class="align-left" width="1"></div><a href="&#104;&#116;&#116;&#112;&#58;&#47;&#47;&#115;&#101;&#120;&#109;&#97;&#109;&#98;&#97;.&#114;&#117;">&#1079;&#1085;&#1072;&#1082;&#1086;&#1084;&#1089;&#1090;&#1074;&#1072;</a> <!-- div --><!-- div end --> <a href="&#104;&#116;&#116;&#112;&#58;&#47;&#47;&#116;&#117;&#116;&#108;&#111;&#118;&#101;.&#114;&#117;">&#1089;&#1077;&#1082;&#1089;</a> <!-- div --><!-- div end --> <a href="&#104;&#116;&#116;&#112;&#58;&#47;&#47;&#117;&#110;&#105;&#115;&#104;&#97;&#98;&#108;&#111;&#110;.&#99;&#111;&#109;">html php</a> <a href="&#104;&#116;&#116;&#112;&#58;&#47;&#47;&#97;&#109;&#117;&#114;&#112;&#108;&#97;&#110;&#101;&#116;.&#114;&#117;">&#1089;&#1072;&#1081;&#1090; &#1079;&#1085;&#1072;&#1082;&#1086;&#1084;&#1089;&#1090;&#1074;</a> <a href="&#104;&#116;&#116;&#112;&#58;&#47;&#47;&#109;&#109;&#109;&#99;&#101;&#110;&#116;&#114;.&#99;&#111;&#109;">&#1052;&#1052;&#1052;</a></div>
-<center>
-<table width="818px" bgcolor="#FFFFFF" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td>
-	
-	
-	<table width="818px" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td width="10px" valign="top">
-	
-	<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td height="380px"  width="10px">&nbsp;</td>
-  </tr>
-  <tr>
-    <td bgcolor="#d8d8d8" height="180px">&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
-</table>
-
-	
-	
-	</td>
-    <td align="center" valign="top">
-	
-	<table width="799px" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td class="header" valign="top" align="right">
-	
-	<table border="0" cellspacing="3" cellpadding="3">
-	<tr>
-	 <td height="10px" colspan="6"></td>
-	</tr>
-  <tr>
-    <td><img src="images/sitemap.gif" /></td>
-    <td><a href="#" class="toplinks">Site Map</a></td>
-    <td><img src="images/search.gif" /></td>
-	<td><a href="#" class="toplinks">Search</a></td>
-	<td><img src="images/email.gif" /></td>
-	<td><a href="#" class="toplinks">Email</a></td>
-  </tr>
-</table>
-
-	
-	</td>
-  </tr>
-  <tr>
-    <td height="8px" bgcolor="#d9d9d9"></td>
-  </tr>
-  
-  <tr>
-    <td align="center">
-	
-	<div align="center">
-			
-			<div id="link2">
-				<ul>
-				<li><a href="#">HOME</a></li>
-				<li><a href="#">ABOUT US</a></li>
-				<li><a href="#">OUR SERVICES</a></li>
-				<li><a href="#">GUESTBOOK</a></li>
-				<li><a href="#">CONTACT US</a></li>
-				</ul>
+<div id="wrapper">
+	<div id="menu-wrapper">
+		<div id="menu" class="container">
+			<ul>
+				<li class="current_page_item"><a href="#">Homepage</a></li>
+				<li><a href="#">Services</a></li>
+				<li><a href="#">Blog</a></li>
+				<li><a href="#">Photos</a></li>
+				<li><a href="#">About Us</a></li>
+				<li><a href="/app.php/guestbook">Guestbook</a></li>
+				<li><a href="#">Contact Us</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="header">
+		<div id="logo" class="container">
+			<h1><a href="#">Open-Air </a></h1>
+			<p>In posuere eleifend odio quisque semper augue.</p>
+		</div>
+	</div>
+	<div id="page" class="container">
+        {% block content %}
+        {% endblock %}
+	</div>
+	<!-- end #page -->
+	<div id="four-column" class="container">
+		<div id="tbox1">
+			<div class="box-style">
+				<div class="image"></div>
+				<div class="arrow"></div>
+				<div class="content">
+					<h2>Fusce ultrices fringilla</h2>
+					<p>Aliquam erat volutpat. Quisque dictum. Integer nisl risus, sagittis convallis elementum congue, nibh. </p>
+				</div>
 			</div>
-			
+		</div>
+		<div id="tbox2">
+			<div class="box-style">
+				<div class="image"></div>
+				<div class="arrow"></div>
+				<div class="content">
+					<h2>Mauris vulputate dolor</h2>
+					<p>Pellentesque tristique ante ut risus. Quisque dictum. Integer nisl risus, sagittis convallis,   congue, nibh. </p>
+				</div>
 			</div>
-	
-	</td>
-  </tr>
-  <tr>
-    <td height="11px"></td>
-  </tr>
-  <tr>
-    <td>
-	
-	<table width="799" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td width="502px" style="border-right:8px #d9d9d9 solid;" >
-	
-	<table border="0" width="450PX" cellspacing="0" cellpadding="0" align="center">
-	<tr>
-	  <td height="12px" colspan="2"></td>
-
-	</tr>
-  <tr>
-    <td align="left"  width="120px"><img src="images/image1.jpg" /></td>
-    <td valign="top" align="center">
-	<img src="images/company_name.gif" /><BR />
-	<P>
-	servicea an established family owned and operated General Engineering Construction Company located in Vashi, Navi Mumbai.
-	</P>
-	
-	</td>
-  </tr>
-  <tr>
-    <td height="4px" colspan="2"></td>
-  </tr>
-  <tr>
-    <td colspan="2">
-	<p>
-	At service Construction Company our experienced staff utilizes state of the art technologies and equipment for the construction of large and small public and private construction projects.
-	</p>
-	</td>
- </tr>
-    <tr>
-      <td height="3px" colspan="2"></td>
-    </tr>
-	<tr>
-      <td colspan="2" style="border-bottom:#999999 1px dashed;">&nbsp;</td>
-    </tr>
-	<tr>
-      <td height="20px" colspan="2"></td>
-    </tr>
-	<tr>
-      <td colspan="2" align="center">
-	  
-	  <table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td width="5px" bgcolor="#ffa700">&nbsp;</td>
-	<td width="8px"></td>
-    <td><img src="images/featured_projects.gif" alt="featured projects" /></td>
-	<td width="8px"></td>
-    <td width="275px" bgcolor="#ececec"></td>
-  </tr>
-  <tr>
-  <td colspan="5">
-  
-<table border="0" cellspacing="12" cellpadding="8" align="center">
-  <tr>
-    <td align="center"><img src="images/image2.jpg" /><br /><img src="images/arrow.jpg" />&nbsp;&nbsp;<a href="#" class="details">Details</a></td>
-    <td align="center"><img src="images/image3.jpg" /><br /><img src="images/arrow.jpg" />&nbsp;&nbsp;<a href="#" class="details">Details</a></td>
-    <td align="center"><img src="images/image4.jpg" /><br /><img src="images/arrow.jpg" />&nbsp;&nbsp;<a href="#" class="details">Details</a></td>
-  </tr>
-   
-</table>
-
-  
-  </td>
-  </tr>
-</table>
-
-	  </td>
-	      
-    </tr>
-</table>
-
-	
-	</td>
-    <td width="306" valign="top">
-	<table border="0" width="264px" cellspacing="0" cellpadding="0" align="center">
-  <tr>
-    <td >&nbsp;</td>
-  </tr>
-  <tr>
-    <td>
-	
-	
-	
-	
-	<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td width="5px" bgcolor="#ffa700">&nbsp;</td>
-	<td width="8px"></td>
-    <td width="130px"><img src="images/company_services.gif" /></td>
-	<td width="8px"></td>
-    <td width="112px" bgcolor="#ececec"></td>
-  </tr>
-  </table>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	</td>
-  </tr>
-  <tr>
-    <td align="left"><br />
-	<img src="images/arrow1.gif" />&nbsp;&nbsp;&nbsp;Technical Services<br /><br />
-	<img src="images/arrow1.gif" />&nbsp;&nbsp;&nbsp;Construction and Consulting Services<br /><br />
-	<img src="images/arrow1.gif" />&nbsp;&nbsp;&nbsp;Construction Sercvices<br /><br />
-	<img src="images/arrow1.gif" />&nbsp;&nbsp;&nbsp;Construction Sercvices<br /><br />
-	
-	<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td width="5px" bgcolor="#ffa700">&nbsp;</td>
-	<td width="8px"></td>
-    <td width="130px"><img src="images/company_services.gif" /></td>
-	<td width="8px"></td>
-    <td width="112px" bgcolor="#ececec"></td>
-  </tr>
-  </table>
-	</td>
-  </tr>
-  
-  <tr>
-    <td height="10px"></td>
-  </tr>
-  <tr>
-    <td align="left">
-	<img src="images/image5.jpg" />
-	<br /><br />At service Construction Company our experienced staff utilizes
-	</td>
-  </tr>
-  <tr>
-    <td height="10px"></td>
-  </tr>
-   <tr>
-    <td align="left">
-	<img src="images/image6.jpg" />
-	<br /><br />At service Construction Company our experienced staff utilizes	</td>
-  </tr>
-  <tr>
-   <td height="10px"></td>
-  </tr>
-</table>
-
-
-	
-	</td>
-  </tr>
-</table>
-
-	
-	</td>
-  </tr>
-</table>
-
-	
-	</td>
-    <td width="9px" >&nbsp;</td>
-  </tr>
-  <tr>
-  <td colspan="3" id="footer">
-  <table border="0" cellspacing="0" cellpadding="0" align="center">
-  <tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <td align="left">Support Phone :<br /><br />
-	<b class="footertphonenumber">91 990 00 00 001</b>
-	</td>
-	<td width="140px"></td>
-    <td align="left">
-	
-	<a href="#" class="footerlinks">about us</a> |
-	<a href="#" class="footerlinks">services</a> |
-	<a href="#" class="footerlinks">contact us</a> |
-	<a href="#" class="footerlinks">info</a> <br /><br />
-	
-	
-
-
-
-
-
-
-
-
-<font color="#FFFFFF">&copy; 2010 Название сайта
-</font>
-	
-	</td>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  </tr>
-         </table>  
-</td></tr></table></td></tr></table></center><div class="width=100% height=100% align-left"></div><div class="width=100% height=100% align-left"></div><!-- div style --><div class="align-left" alt=""  height="48" width="1"></div><div class="align-left" alt="" height="64" width="1"></div><div class="align-left" alt="" height="100" width="1"></div><div  class="align-left" alt="" height="100" width="1"></div><div class="align-left" alt="" height="48" width="1"></div><div class="align-left" alt="" height="1"  width="100"></div><div class="align-left"></div><div class="align-center"></div><div class="align-right"></div><div class="align-left" alt="" height="48"  width="1"></div><div class="align-left" alt="" height="48" width="1"></div><div class="align-left" width="1"></div><div class="align-left" width="1"></div> <!-- div style --> <font color=#545454><!-- div style --> love <a href="http://tutlove.ru/"><font color=#545454>&#1089;&#1077;&#1082;&#1089; ru</font></a> &#1089&#1072&#1081&#1090 <a href="http://unishablon.com/"><font color=#545454>html &#1096&#1072&#1073&#1083&#1086&#1085&#1099</font></a> <!-- div end -->
-<!-- div --> foto <a href="http://amurplanet.ru/"><font color=#545454>&#1079;&#1085;&#1072;&#1082;&#1086;&#1084;&#1089;&#1090;&#1074;&#1072; ru</font></a>
-<!-- div style --><!-- div -->&#1092&#1086&#1090&#1086 <a href="http://sexmamba.ru/"><font  color=#545454>ru &#1084;&#1072;&#1084;&#1073;&#1072;</font></a> &#1084;&#1072;&#1074;&#1088;&#1086; <a href="http://mmmcentr.com/"><font color=#545454>ммм 11</font></a> <div class="width=10% height=1% align-right"></div><div class="width=1% align-left"></div><div class="width=10% align-left"></div></font></body></html>
+		</div>
+		<div id="tbox3">
+			<div class="box-style">
+				<div class="image"></div>
+				<div class="arrow"></div>
+				<div class="content">
+					<h2>Nulla luctus eleifend </h2>
+					<p>Pellentesque tristique ante ut risus. Quisque dictum. Integer nisl risus, sagittis  elementum congue, nibh.</p>
+				</div>
+			</div>
+		</div>
+		<div id="tbox4">
+			<div class="box-style">
+				<div class="image"></div>
+				<div class="arrow"></div>
+				<div class="content">
+					<h2>Nulla luctus eleifend </h2>
+					<p>Pellentesque tristique ante ut risus. Quisque dictum. Integer nisl risus, sagittis  elementum congue, nibh.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="footer-content" class="container">
+	<div id="footer-bg">
+		<div id="column1">
+			<h2>Untitled Inc.</h2>
+			<p>Copyright (c) 2012 Sitename.com</p>
+			<p>All rights reserved.</p>
+			<p>Design by <a href="http://www.freecsstemplates.org">FCT</a>. Photos by Fotogrph</a>.</p>
+		</div>
+		<div id="column2">
+			<h2>Rhoncus volutpat</h2>
+			<ul class="list-style3">
+				<li class="first"><a href="#">Pellentesque consectetuer gravida blandit.</a></li>
+				<li><a href="#">Lorem consectetuer adipiscing elit.</a></li>
+				<li><a href="#">Phasellus pellentesque conguen lectus</a></li>
+				<li><a href="#">Cras vitae pellentesque pharetra.</a></li>
+				<li><a href="#">Maecenas vitae vitae feugiat eleifend.</a></li>
+				<li><a href="#">Pellentesque consectetuer gravida blandit.</a></li>
+			</ul>
+		</div>
+		<div id="column3">
+			<h2>Recommended Links</h2>
+			<ul class="list-style3">
+				<li class="first"><a href="#">Pellentesque consectetuer gravida blandit.</a></li>
+				<li><a href="#">Lorem consectetuer adipiscing elit.</a></li>
+				<li><a href="#">Phasellus pellentesque conguen lectus</a></li>
+				<li><a href="#">Cras vitae pellentesque pharetra.</a></li>
+				<li><a href="#">Maecenas vitae vitae feugiat eleifend.</a></li>
+				<li><a href="#">Pellentesque consectetuer gravida blandit.</a></li>
+			</ul>
+		</div>
+		<div id="column4">
+			<h2>Social</h2>
+			<ul class="list-style3">
+				<li class="first"><a href="#">Twitter</a></li>
+				<li><a href="#">Facebook</a></li>
+				<li><a href="#">Flickr</a></li>
+				<li><a href="#">Google +</a></li>
+				<li><a href="#">Instagram</a></li>
+				<li><a href="#">RSS</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- end #footer -->
+</body>
+</html>

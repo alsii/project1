@@ -22,8 +22,7 @@ DirectoryIndex app.php
     # environment variable, you have 2 choices:
     # - disable this feature by commenting the following 2 lines or
     # - use Apache >= 2.3.9 and replace all L flags by END flags and remove
-    # - the
-    #   following RewriteCond (best solution)
+    # - the following RewriteCond (best solution)
     RewriteCond %{ENV:REDIRECT_STATUS} ^$
     RewriteRule ^app\.php(/(.*)|$) %{ENV:BASE}/$2 [R=301,L]
 
