@@ -1,4 +1,4 @@
-[https://travis-ci.org/alsii/project1.svg]
+![https://travis-ci.org/alsii/project1.svg]
 
 Сайт строительной компании с гостевой книгой
 ============================================
