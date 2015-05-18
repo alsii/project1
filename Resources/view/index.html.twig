@@ -1,9 +1,46 @@
-<!doctype>
-<html>
-<head>
-<title>Anna's Application</title>
-</head>
-<body>
-<h1>Hello, {{name}}</h1>
-</body>
-</html>
+{%extends "base_layout.html.twig"%}
+{% block content %}
+		<div id="content">
+				<h2><a href="#">Hello, {{name}}!</a></h2>
+				<div class="entry">
+					<p><img src="images/img11.jpg" width="690" height="200" alt="" /></p>
+					<p>This is <strong>Open-Air </strong>, a free, fully standards-compliant CSS template designed by <a href="http://www.freecsstemplates.org">FCT</a>.     The photos in this template are from  Fotogrph</a>. This free template is released under a Creative Commons Attributions 3.0</a> license, so you are pretty much free to do whatever you want with it (even use it commercially) provided you keep the links in the footer intact. Aside from that, have fun with it :) </p>
+			</div>
+		</div>
+		<!-- end #content -->
+		<div id="sidebar1">
+			<div>
+				<h2>Maecenas luctus</h2>
+				<ul class="list-style2">
+					<li class="first"><a href="#">Pellentesque consectetuer </a></li>
+					<li><a href="#">Lorem  adipiscing elit.</a></li>
+					<li><a href="#">Phasellus pellentesque </a></li>
+					<li><a href="#">Cras vitae pellentesque </a></li>
+					<li><a href="#">Maecenas   feugiat eleifend.</a></li>
+					<li><a href="#">Pellentesque  gravida blandit.</a></li>
+					<li><a href="#">Phasellus pellentesque </a></li>
+					<li><a href="#">Cras vitae pellentesque </a></li>
+					<li><a href="#">Maecenas   feugiat eleifend.</a></li>
+					<li><a href="#">Phasellus pellentesque </a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="sidebar2">
+			<div>
+				<h2>Nulla luctus eleifend</h2>
+				<ul class="list-style2">
+					<li class="first"><a href="#">Pellentesque  elit non  gravida blandit.</a></li>
+					<li><a href="#">Lorem ipsum dolor sit amet,  adipiscing elit.</a></li>
+					<li><a href="#">Phasellus nec erat    pellentesque congue.</a></li>
+					<li><a href="#">Cras vitae metus   pellentesque pharetra.</a></li>
+					<li><a href="#">Phasellus  erat sit  nibh pellentesque congue.</a></li>
+					<li><a href="#">Maecenas   vitae tellus feugiat eleifend.</a></li>
+					<li><a href="#">Lorem ipsum dolor sit amet,  adipiscing elit.</a></li>
+					<li><a href="#">Phasellus nec erat    pellentesque congue.</a></li>
+					<li><a href="#">Cras vitae metus   pellentesque pharetra.</a></li>
+					<li><a href="#">Phasellus  erat sit  nibh pellentesque congue.</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- end #sidebar -->
+{% endblock %}

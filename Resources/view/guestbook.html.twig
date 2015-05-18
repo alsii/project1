@@ -1,17 +1,23 @@
 {% extends "base_layout.html.twig" %}
 {% block content %}
-<table>
 {% for msg in messages %}
-<tr>
-<td>{{msg.datetime|date('d.m.Y H:i:s') }}</td>
-<td>{{msg.user}}</td>
-<td>{{msg.text}}</td>
-</tr>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="pull-right">{{msg.datetime|date('d.m.Y H:i:s') }}</div>
+    <div class="panel-title">{{msg.user}}</div>
+  </div>
+  <div class="panel-body">{{msg.text}}</div>
+</div>
 {% endfor %}
-</table>
 <form action="/guestbook/add" method="post">
-<p>Пользователь: <input name="user"></p>
-<p>Сообщение: <input type="text" name="message"></p>
-<p><input type="submit" name="send"></p>
+  <div class="form-group">
+    <label for="user">Пользователь</label>
+    <input class="form-control" id="user" name="user">
+  </div>
+  <div class="form-group">
+    <label for="message">Сообщение</label>
+    <textarea class="form-control" id="message" name="message"></textarea>
+  </div>
+  <input class="btn btn-primary" type="submit" name="Send" value="Отправить сообщение">
 </form>
 {% endblock %}

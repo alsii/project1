@@ -18,7 +18,8 @@ h1, h2, h3 {
 	margin: 0;
 	padding: 0;
 	text-transform: lowercase;
-	font-family: 'Oswald', sans-serif;
+	-font-family: 'Oswald', sans-serif;
+	font-family: 'Open Sans Condensed', sans-serif;
 	font-weight: 300;
 	color: #7D7764;
 }
@@ -79,7 +80,7 @@ a:hover {
 
 #logo {
 	overflow: hidden;
-	font-family: 'Oswald', sans-serif;
+	font-family: 'Open Sans Condensed', sans-serif;
 }
 
 #logo h1, #logo p {
@@ -131,7 +132,7 @@ a:hover {
 	padding: 0px 0px 0px 0px;
 	list-style: none;
 	line-height: normal;
-	font-family: 'Oswald', sans-serif;
+	font-family: 'Open Sans Condensed', sans-serif;
 }
 
 #menu li {
