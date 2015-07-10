@@ -33,5 +33,26 @@ class HtmlResponseTest extends PHPUnit_Framework_TestCase
       
       $headers2 = $response->getHeaders();
       $this->assertEquals($headers, $headers2);
+      
+    }
+    
+    /**
+     * @runInSeparateProcess
+     */
+    public function testRender()
+    {
+      $text = 'text';
+      $headers = ['Content-Type: text/plain'];
+
+      $response = new HtmlResponse();
+      $response
+        ->setText($text)
+        ->setHeaders($headers)
+      ;
+
+      $this->expectOutputString($text);
+      $response->render();
+//      $this->assertResponseStatusCode(200);
+//      $this->assertEquals($headers, xdebug_get_headers());
     }
 }
