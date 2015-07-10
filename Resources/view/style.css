@@ -256,9 +256,10 @@ a:hover {
 	color: #787878;}
 #sidebar4 {
 	float: left;
-	margin-top: 10px;
+	margin: 0px;
 	padding: 0px 0px 0px 0px;
-	color: #787878;}
+	color: #787878;
+	}
 	
 #sidebar5 {
 	text-align: center;
@@ -267,10 +268,9 @@ a:hover {
 	color: #787878;
 	}
 	
-.table  { 
+.tabel  { 
 	width: 100%; /* Ширина таблицы */
     border: 2px;
-	border-radius: 8px 8px 8px 8px;
 	border-color:black;
 	table-layout: fixed;
 	background-color:  	#6495ED;
@@ -348,11 +348,14 @@ a:hover {
 }
 
 #column3 {
-	float: right;
-	width: 250px;
-	margin-right: 345px;
+	float: left;
+	width: 280px;
 }
 
+#column4 {
+	float: right;
+	width: 260px;
+}
 
 
 /* Footer */

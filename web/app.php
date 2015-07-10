@@ -1,6 +1,8 @@
 <?php
 require __DIR__.'/../vendor/autoload.php';
-use App\Application\Application;
+use App\Kernel\Kernel;
 
-$app = new Application();
-$app->run();
+$kernel = new Kernel();
+$kernel->init();
+$kernel->route(isset($_SERVER['REDIRECT_URL'])?$_SERVER['REDIRECT_URL']:'/');
+                        

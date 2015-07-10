@@ -6,7 +6,7 @@ Released for free under a Creative Commons Attribution 2.5 License
 */
 
 body {
-	margin: 0 auto;
+	margin: 0;
 	padding: 0;
 	background: #0048B3 url(/images/img01.png) repeat;
 	font-family: Tahoma, Geneva, sans-serif;
@@ -17,6 +17,7 @@ body {
 h1, h2{
 	margin: 0;
 	padding: 0;
+	text-transform: lowercase;
 	font-family: 'Oswald', sans-serif;
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-weight: 300;
@@ -32,16 +33,6 @@ h3{
 	font-weight: 300;
 
 }
-
-h4{
-	margin: 0;
-	padding: 0;
-	color:black;
-	font-family: 'Oswald', sans-serif;
-	font-family: 'Open Sans Condensed', sans-serif;
-	font-weight: 300;
-
-}
 h1 {
 	font-size: 2em;
 }
@@ -52,10 +43,6 @@ h2 {
 
 h3 {
 	font-size: 2.8em;
-}
-
-h4{
-font-size: 2em;
 }
 
 
@@ -85,7 +72,6 @@ a:hover {
 .container {
 	width: 1200px;
 	margin: 0px auto;
-	padding:none;
 }
 
 /* Header */
@@ -156,11 +142,10 @@ a:hover {
 }
 
 #menu .logotip{
-	width: 80px;
-	float:left;
-	height: 80px;
+	width: 16px;
+	height: 16px;
 	margin: 0 auto;
-	background: url(/images/logotip2.gif) no-repeat center;
+	background: url(/images/logo.gif) no-repeat right top;
 }
 
 #menu ul {
@@ -245,7 +230,7 @@ a:hover {
 #sidebar2 {
 
 	float: left;
-	margin-top: 10px;
+	margin: 0px;
 	padding: 0px 0px 0px 0px;
 	color: #787878;}
 	
@@ -256,32 +241,17 @@ a:hover {
 	color: #787878;}
 #sidebar4 {
 	float: left;
-	margin-top: 10px;
-	padding: 0px 0px 0px 0px;
-	color: #787878;}
-	
-#sidebar5 {
-	text-align: center;
 	margin: 0px;
 	padding: 0px 0px 0px 0px;
 	color: #787878;
 	}
 	
-.table  { 
-	width: 100%; /* Ширина таблицы */
-    border: 2px;
-	border-radius: 8px 8px 8px 8px;
-	border-color:black;
-	table-layout: fixed;
-	background-color:  	#6495ED;
+   table { 
+    width: 100%; /* Ширина таблицы */
+    border: 4px black; /* Рамка вокруг таблицы */
+    border-collapse: collapse; /* Отображать только одинарные линии */
    }
 
- td, tr {
-    padding: 3px; /* Поля вокруг содержимого таблицы */
-    border: 1px solid black;
-	border-color:black;
-	align:center;
-   }
 
 #sidebar2 h2 {
 	padding: 0px 0px 20px 0px;
@@ -333,8 +303,8 @@ a:hover {
 
 #column1 {
 	float: left;
-	width: 250px;
-	margin-right: 10px;
+	width: 280px;
+	margin-right: 30px;
 }
 
 #column1 p {
@@ -342,17 +312,20 @@ a:hover {
 }
 
 #column2 {
-	float: right;
-	width: 250px;
-	margin-right: 345px;
+	float: left;
+	width: 280px;
+	margin-right: 30px;
 }
 
 #column3 {
-	float: right;
-	width: 250px;
-	margin-right: 345px;
+	float: left;
+	width: 280px;
 }
 
+#column4 {
+	float: right;
+	width: 260px;
+}
 
 
 /* Footer */
