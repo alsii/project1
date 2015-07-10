@@ -3,19 +3,19 @@ namespace App\Entity;
 
 class Message
 {
-    private $id;
+    private $identifier;
     private $user;
     private $datetime;
     private $text;
     
     public function __construct()
     {
-        $this->id = sha1(microtime());
+        $this->identifier = sha1(microtime());
     }
     
     public function getId()
     {
-        return $this->id;
+        return $this->identifier;
     }
     
     public function getUser()
