@@ -18,9 +18,9 @@ class FilesystemRepository extends Repository
         if(!is_dir($filepath)) {
             mkdir($filepath, 0777, true);
         }
-        $fp = fopen($filepath . DIRECTORY_SEPARATOR . $filename, 'w');
-        fwrite($fp, $filedata);
-        fclose($fp);
+        $file = fopen($filepath . DIRECTORY_SEPARATOR . $filename, 'w');
+        fwrite($file, $filedata);
+        fclose($file);
     }
     
     public function getAll()
