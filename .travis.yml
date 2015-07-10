@@ -9,7 +9,7 @@ addons:
     repo_token: c1dd18e436bb98a40e4dae34d82117a92bd1615d529de47be401c5013e2255d8
 install:
   - composer require --dev  codeclimate/php-test-reporter:dev-master
-script: phpnit --coverage-clover
+script: phpunit --coverage-clover
 after_script:
   - vendor/bin/test-reporter
 
