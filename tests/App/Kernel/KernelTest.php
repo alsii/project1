@@ -2,6 +2,7 @@
 namespace App\Kernel;
 
 use PHPUnit_Framework_TestCase;
+use Twig_Environment;
 
 class KernelTest extends PHPUnit_Framework_TestCase
 {
@@ -35,7 +36,7 @@ class KernelTest extends PHPUnit_Framework_TestCase
         $kernel = new Kernel();
         $kernel->init();
         
-        $kernelReflection = new \ReflectionClass('Kernel');
+        $kernelReflection = new \ReflectionClass('App\Kernel\Kernel');
         
         $templateEngine = $kernelReflection->getProperty('templateEngine');
         $templateEngine->setAccessible(true);
