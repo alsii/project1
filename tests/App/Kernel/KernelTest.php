@@ -22,11 +22,27 @@ class KernelTest extends PHPUnit_Framework_TestCase
       $this->setExpectedException('Exception', 'Can not redirect with non-redirect code: 999');
       $kernel->redirect('http://test.url', 999); 
     }
-
+       
     public function testGetBasePath()
     {
       $kernel = new Kernel();
       $path = $kernel->getBasePath();
       $this->assertEquals(realpath(__DIR__.'/../../..'), $path);
+    }
+    
+    public fuction testInit()
+    {
+        $kernel = new Kernel();
+        $kernel->init();
+        
+        $kernelReflection = new \ReflectionClass('Kernel');
+        
+        $templateEngine = $kernelReflection->getProperty('templateEngine');
+        $templateEngine->setAccessible(true);
+        $this->assertInstanceOf('Twig_Environment', $temlpateEngine->getValue());
+
+        $templateEngine = $kernelReflection->getProperty('config');
+        $templateEngine->setAccessible(true);
+        $this->assertEqual($temlpateEngine->getValue(), include($kernel->getBasePath() . '/Resources/config/config.php'));
     }
 }
