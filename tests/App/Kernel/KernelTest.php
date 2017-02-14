@@ -26,7 +26,7 @@ class KernelTest extends PHPUnit_Framework_TestCase
        
     public function testGetBasePath()
     {
-      $kernel = new Kernel();
+        
       $path = $kernel->getBasePath();
       $this->assertEquals(realpath(__DIR__.'/../../..'), $path);
     }
@@ -47,15 +47,23 @@ class KernelTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($config->getValue($kernel), include($kernel->getBasePath() . '/Resources/config/config.php'));
     }
     
-    public function testLoadConfig()
+//    public function testLoadConfig()
+//    {
+//        $kernel = new Kernel();
+//        $kernel->loadConfig();
+//        
+//        $kernelReflection = new \ReflectionClass('App\Kernel\Kernel');
+//
+//        $config = $kernelReflection->getProperty('config');
+//        $config->setAccessible(true);
+//        $this->assertEquals($config->getValue($kernel), include($kernel->getBasePath() . '/Resources/config/config.php'));
+//    }
+    
+    public function testGetTemplateEngine()
     {
         $kernel = new Kernel();
-        $kernel->loadConfig();
+        $templateEngine = $kernel->getTemplateEngine();
         
-        $kernelReflection = new \ReflectionClass('App\Kernel\Kernel');
-
-        $config = $kernelReflection->getProperty('config');
-        $config->setAccessible(true);
-        $this->assertEquals($config->getValue($kernel), include($kernel->getBasePath() . '/Resources/config/config.php'));
+        $this->assertAttributeEquals($templateEngine, 'templateEngine', $kernel);
     }
 }
