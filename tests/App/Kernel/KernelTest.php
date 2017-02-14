@@ -2,6 +2,7 @@
 namespace App\Kernel;
 
 use PHPUnit_Framework_TestCase;
+use Twig_Environment;
 
 class KernelTest extends PHPUnit_Framework_TestCase
 {
@@ -22,11 +23,48 @@ class KernelTest extends PHPUnit_Framework_TestCase
       $this->setExpectedException('Exception', 'Can not redirect with non-redirect code: 999');
       $kernel->redirect('http://test.url', 999); 
     }
-
+       
     public function testGetBasePath()
     {
-      $kernel = new Kernel();
-      $path = $kernel->getBasePath();
-      $this->assertEquals(realpath(__DIR__.'/../../..'), $path);
+        $kernel = new Kernel();
+
+        $path = $kernel->getBasePath();
+        $this->assertEquals(realpath(__DIR__.'/../../..'), $path);
+    }
+    
+    public function testInit()
+    {
+        $kernel = new Kernel();
+        $kernel->init();
+        
+        $kernelReflection = new \ReflectionClass('App\Kernel\Kernel');
+        
+        $templateEngine = $kernelReflection->getProperty('templateEngine');
+        $templateEngine->setAccessible(true);
+        $this->assertInstanceOf('Twig_Environment', $templateEngine->getValue($kernel));
+
+        $config = $kernelReflection->getProperty('config');
+        $config->setAccessible(true);
+        $this->assertEquals($config->getValue($kernel), include($kernel->getBasePath() . '/Resources/config/config.php'));
+    }
+    
+//    public function testLoadConfig()
+//    {
+//        $kernel = new Kernel();
+//        $kernel->loadConfig();
+//        
+//        $kernelReflection = new \ReflectionClass('App\Kernel\Kernel');
+//
+//        $config = $kernelReflection->getProperty('config');
+//        $config->setAccessible(true);
+//        $this->assertEquals($config->getValue($kernel), include($kernel->getBasePath() . '/Resources/config/config.php'));
+//    }
+    
+    public function testGetTemplateEngine()
+    {
+        $kernel = new Kernel();
+        $templateEngine = $kernel->getTemplateEngine();
+        
+        $this->assertAttributeEquals($templateEngine, 'templateEngine', $kernel);
     }
 }
