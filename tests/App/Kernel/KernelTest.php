@@ -40,10 +40,10 @@ class KernelTest extends PHPUnit_Framework_TestCase
         
         $templateEngine = $kernelReflection->getProperty('templateEngine');
         $templateEngine->setAccessible(true);
-        $this->assertInstanceOf('Twig_Environment', $templateEngine->getValue());
+        $this->assertInstanceOf('Twig_Environment', $templateEngine->getValue($kernel));
 
         $templateEngine = $kernelReflection->getProperty('config');
         $templateEngine->setAccessible(true);
-        $this->assertEqual($temlpateEngine->getValue(), include($kernel->getBasePath() . '/Resources/config/config.php'));
+        $this->assertEqual($temlpateEngine->getValue($kernel), include($kernel->getBasePath() . '/Resources/config/config.php'));
     }
 }
