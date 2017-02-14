@@ -30,7 +30,7 @@ class KernelTest extends PHPUnit_Framework_TestCase
       $this->assertEquals(realpath(__DIR__.'/../../..'), $path);
     }
     
-    public fuction testInit()
+    public function testInit()
     {
         $kernel = new Kernel();
         $kernel->init();
