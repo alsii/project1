@@ -26,9 +26,10 @@ class KernelTest extends PHPUnit_Framework_TestCase
        
     public function testGetBasePath()
     {
-        
-      $path = $kernel->getBasePath();
-      $this->assertEquals(realpath(__DIR__.'/../../..'), $path);
+        $kernel = new Kernel();
+
+        $path = $kernel->getBasePath();
+        $this->assertEquals(realpath(__DIR__.'/../../..'), $path);
     }
     
     public function testInit()
