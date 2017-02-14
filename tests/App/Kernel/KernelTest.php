@@ -44,6 +44,6 @@ class KernelTest extends PHPUnit_Framework_TestCase
 
         $templateEngine = $kernelReflection->getProperty('config');
         $templateEngine->setAccessible(true);
-        $this->assertEquals($temlpateEngine->getValue($kernel), include($kernel->getBasePath() . '/Resources/config/config.php'));
+        $this->assertEquals($templateEngine->getValue($kernel), include($kernel->getBasePath() . '/Resources/config/config.php'));
     }
 }
