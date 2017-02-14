@@ -42,8 +42,20 @@ class KernelTest extends PHPUnit_Framework_TestCase
         $templateEngine->setAccessible(true);
         $this->assertInstanceOf('Twig_Environment', $templateEngine->getValue($kernel));
 
-        $templateEngine = $kernelReflection->getProperty('config');
-        $templateEngine->setAccessible(true);
-        $this->assertEquals($templateEngine->getValue($kernel), include($kernel->getBasePath() . '/Resources/config/config.php'));
+        $config = $kernelReflection->getProperty('config');
+        $config->setAccessible(true);
+        $this->assertEquals($config->getValue($kernel), include($kernel->getBasePath() . '/Resources/config/config.php'));
+    }
+    
+    public function testLoadConfig()
+    {
+        $kernel = new Kernel();
+        $kernel->loadConfig();
+        
+        $kernelReflection = new \ReflectionClass('App\Kernel\Kernel');
+
+        $config = $kernelReflection->getProperty('config');
+        $config->setAccessible(true);
+        $this->assertEquals($config->getValue($kernel), include($kernel->getBasePath() . '/Resources/config/config.php'));
     }
 }
