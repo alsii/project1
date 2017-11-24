@@ -4,7 +4,8 @@
     },
 
     "require": {
-        "twig/twig": "^1.0"
+        "twig/twig": "^1.0",
+        "phpunit/phpunit": "^5.0"
     },
     "require-dev": {
     }
