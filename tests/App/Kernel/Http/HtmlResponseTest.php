@@ -1,9 +1,9 @@
 <?php
 namespace App\Kernel\Http;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class HtmlResponseTest extends PHPUnit_Framework_TestCase
+class HtmlResponseTest extends \PHPUnit\Framework\TestCase
 {
     public function testMutators()
     {
