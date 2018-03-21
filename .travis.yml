@@ -1,8 +1,8 @@
 language: php
 php:
-  - 5.4
-  - 5.5
-  - 5.6
+#  - 5.4
+#  - 5.5
+#  - 5.6
   - 7.0
   - 7.1
 env:
@@ -13,7 +13,9 @@ install:
   - composer self-update
   - composer update twig/twig
   - composer require --dev  codeclimate/php-test-reporter:dev-master
-script: phpunit --coverage-clover build/logs/clover.xml
+script: phpunit --coverage-clover --whitelist build/logs/clover.xml
 after_script:
   - vendor/bin/test-reporter
-
+notifications:
+  slack:
+    secure: 'c4iRVc4qXb1JKXT8U9Ja4JCKVC0ZdjDcgJ1gj5xgjoVH0J2hYGyBEsBhhezvgb9x0KaE8RzVA9cqDNGFWo1Uicakc3XWfsaKrN20567scNkH3+b46mqzneec2ciPtBAX1128Ra0/eHGrxbPyh12cRvcfwfz6PestrLbZvzit4izdPRMwi94RixUOi+vJxugrpa2HlSo9CWijiQyYXPgLqh7QSEejrxayj7xHI8WJOph5BNPEaiXfAUTIm5x/3qM6JkDXn7xA5W6FdAks51stRA8+OyEqZVPBIuiq94tD3TaM4o3fZg48DU87ooTpqWr+b9viI+kfgEWp5tQDFK/YsDUMQH+KBcElnqHFjgtuMsG+d69o5v0uQF93fuFUGXBpeSa3E/iUbJXSP4owNaLjOMRCa+hOT1q35YTX9MXlrMXQt8/eqdUhpTzcRHJCy1VlQNVUNwwb+vZqG0qJtAp7cbvPUfNm8bSqr25ZSNKCXW4b328BBLV+gH08yTPCjTvkr+EtHAAXLtOVglNE2dM6NmLlj1vzTbtqMFYyAJaYEX+pjsNIZUCRW3QEMmGSMijqVzGIDAjJLyajTW8iZC9mpYrEDwNomXFUFhj9RLKEoX6sj4hnocgAGHaHeSCsaGqmE97Ypxo0V8xGRV+k7yBNvXR4LoGnGPt8wAym9dnBqds='
