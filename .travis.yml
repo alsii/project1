@@ -13,7 +13,7 @@ install:
   - composer self-update
   - composer update twig/twig
   - composer require --dev  codeclimate/php-test-reporter:dev-master
-script: phpunit --coverage-clover --whitelist build/logs/clover.xml
+script: phpunit --coverage-clover build/logs/clover.xml
 after_script:
   - vendor/bin/test-reporter
 notifications:
