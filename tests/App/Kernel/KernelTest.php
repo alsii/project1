@@ -4,7 +4,7 @@ namespace App\Kernel;
 use PHPUnit\Framework\TestCase;
 use Twig_Environment;
 
-class KernelTest extends \PHPUnit\Framework\TestCase
+class KernelTest extends TestCase
 {
     public function testRedirect()
     {
