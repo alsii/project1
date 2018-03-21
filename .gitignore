@@ -2,4 +2,5 @@
 *~
 cache/*
 vendor/*
+build/*
 Database
