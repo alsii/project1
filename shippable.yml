@@ -10,7 +10,7 @@ build:
     - ./vendor/bin/phpunit --log-junit shippable/testresults/junit.xml --coverage-xml shippable/codecoverage
     
   pre_ci_boot:
-    image_name: drydock/u14php7pls
+    image_name: drydock/u16phpall
     image_tag: latest
     pull: true
 
