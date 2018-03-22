@@ -90,22 +90,25 @@ class Parser
   public function buildUrl($routeName, $parameters)
   {
     $route = $this->findRouteByName($routeName);
-
     $url = $route['pattern'];
 
     $tokens = $this->tokenize($url);
     foreach($tokens as $token) {
       if($token['type'] === self::TOKEN_PARAMETER) {
         $name = $token['value'];
-        if(!isset($parameters[$name])) {
-          throw new \Exception("Parameter '{$name}' is not set for route '$routeName'");
-        }
+        $this->isParameterSet($parameters, $name, $routeName);
         $url = str_replace(":$name", $parameters[$name], $url);
       }
     }    
     
-//    return $_SERVER['SCRIPT_NAME'] . $url;
     return $url;
+  }
+
+  private function isParameterSet($parameters, $name, $routeName)
+  {
+    if(!isset($parameters[$name])) {
+      throw new \Exception("Parameter '{$name}' is not set for route '{$routeName}'");
+    }
   }
 
   private function findRouteByName($routeName)
@@ -116,7 +119,7 @@ class Parser
       }
     }
 
-    throw new \Exception("Route $routeName not found.");
+    throw new \Exception("Route {$routeName} not found.");
   }
   
   protected function matchToken($field, $token)
