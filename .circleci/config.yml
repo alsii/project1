@@ -2,20 +2,8 @@
 #
 # Check https://circleci.com/docs/2.0/language-php/ for more details
 #
-version: 2
-jobs:
-  build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/php:7.1.5-browsers
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mysql:9.4
 
-    working_directory: ~/repo
-
+default_steps: &default_steps
     steps:
       - checkout
 
@@ -26,19 +14,83 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+      - run:
+          name: Install Composer
+          command: |
+            php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+            php -r "if (hash_file('SHA384', 'composer-setup.php') === trim(file_get_contents('https://composer.github.io/installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer invalid'; unlink('composer-setup.php'); } echo PHP_EOL;"
+            php composer-setup.php
+            php -r "unlink('composer-setup.php');"
+            sudo mv composer.phar /usr/local/bin/composer
+            
+      - run:
+          name: Display PHP information
+          command: |
+            php -v
+            composer --version
+      - run:
+          name: Install project dependencies
+          command: composer install            
+
+#      - run: php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 #      - run: php -r "if (hash_file('SHA384', 'composer-setup.php') === '669656bab3166a7aff8a7506b8cb2d1c292f042046c5a994c43155c0be6190fa0355160742ab2e1c88d40d5be660b410') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-      - run: php composer-setup.php
-      - run: php -r "unlink('composer-setup.php');"
-      - run: php composer.phar self-update
-      - run: sudo mv composer.phar /usr/local/bin/composer
-      
-      - run: composer install -n --prefer-dist
+#      - run: php composer-setup.php
+#      - run: php -r "unlink('composer-setup.php');"
+#      - run: php composer.phar self-update
+#      - run: sudo mv composer.phar /usr/local/bin/composer
+#      - run: composer install -n --prefer-dist
 
       - save_cache:
           paths:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
-        
-      # run tests!
-      - run: vendor/phpunit/phpunit/phpunit
+
+      - run:
+          name: Unit Tests
+          command: |
+            mkdir -p ~/phpunit
+            ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml
+          when: always
+
+      - store_test_results:
+          path: ~/phpunit
+
+      - store_artifacts:
+          path: ~/phpunit
+
+version: 2
+jobs:
+  build-php-7.0:
+    docker:
+      # specify the version you desire here
+      - image: circleci/php:7.0-node-browsers
+      
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mysql:9.4
+
+    working_directory: ~/repo
+
+    <<: *default_steps
+
+  build-php-7.1:
+    docker:
+      - image: circleci/php:7.1-node-browsers
+    working_directory: ~/repo
+    <<: *default_steps
+
+  build-php-7.2:
+    docker:
+      - image: circleci/php:7.2-node-browsers
+    working_directory: ~/repo
+    <<: *default_steps
+    
+workflows:
+    version: 2
+    build:
+        jobs:
+          - build-php-7.0
+          - build-php-7.1
+          - build-php-7.2
+
