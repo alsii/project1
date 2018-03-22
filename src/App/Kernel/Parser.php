@@ -14,6 +14,10 @@ namespace App\Kernel;
  */
 class Parser
 {
+
+  const TOKEN_PARAMETER = 0;
+  const TOKEN_PATH = 1;
+
   /**
    * @var array An array of the patterns
    */
@@ -24,43 +28,60 @@ class Parser
     $this->patterns = $patterns;
   }
   
-  //TODO This method is to be refactored. Extract the internal loop into a separate method.
   public function parse($req)
   {
     $fields = explode('/',$req );
     $fields_number = count($fields);
 
     foreach($this->patterns as $pattern) {
-      $parameters = array();
-      $tokens = $this->tokenize($pattern['pattern']);
-      
-      if(count($tokens) != $fields_number) { // Count of the request fields do not match the tokens count of the current pattern
-        continue; // skip current pattern
-      }
-      reset($fields);
-      
-      foreach($tokens as $token) {
-        
-        $match = $this->matchToken(current($fields), $token);
-        if($match) {
-          if(is_array($match)) {
-            $parameters[$match['name']] = $match['value']; 
-          }
-        } else {
-          break;
-        }
-        next($fields);
-      }
-      
-      if($match) {
-        return array(
-          'controller' => $pattern['controller'].'Controller',
-          'action' => $pattern['action'].'Action',
-          'parameters' => $parameters,
-        );
+      $result = $this->checkPattern($pattern, $fields, $fields_number);
+      if ($result) {
+        break;
       }
     }
+    
+    return $result;
+  }
+
+  private function checkPattern($pattern, $fields, $fields_number)
+  {
+    $tokens = $this->tokenize($pattern['pattern']);
+    if(count($tokens) != $fields_number) { // Count of the request fields do not match the tokens count of the current pattern
+      return false;
+    }
+    
+    $parameters = $this->checkTokens($tokens, $fields);
+    if($parameters !== false) {
+      return [
+        'controller' => $pattern['controller'].'Controller',
+        'action' => $pattern['action'].'Action',
+        'parameters' => $parameters,
+      ];
+    }
+    
     return false;
+  }
+
+  private function checkTokens($tokens, $fields)
+  {
+    $parameters = [];
+
+    reset($fields);
+    foreach($tokens as $token) {
+      $field = current($fields);
+      $match = $this->matchToken($field, $token);
+      if($match === false) {
+          return false;
+      }
+      
+      if($match !== true) {
+        $parameters[$token['value']] = $match;
+      }
+     
+      next($fields);
+    }
+    
+    return $parameters;
   }
   
   /**
@@ -68,45 +89,43 @@ class Parser
    */
   public function buildUrl($routeName, $parameters)
   {
-    foreach($this->patterns as $pattern) {
-      if(isset($pattern['name']) && $pattern['name'] == $routeName) {
-        $route = $pattern;
-        break;
-      }
-    }
-    
-    if(!isset($route)) {
-      throw new \Exception("Route $routeName not found.");
-    }
-    
-    $url = $route['pattern'];
-    $tokens = $this->tokenize($url);
+    $route = $this->findRouteByName($routeName);
 
+    $url = $route['pattern'];
+
+    $tokens = $this->tokenize($url);
     foreach($tokens as $token) {
-      if(!(empty($token['name']))) {
-        $name = $token['name'];
+      if($token['type'] === self::TOKEN_PARAMETER) {
+        $name = $token['value'];
         if(!isset($parameters[$name])) {
           throw new \Exception("Parameter '{$name}' is not set for route '$routeName'");
         }
-        $url = str_replace(":$name", $parameters['name'], $url);
+        $url = str_replace(":$name", $parameters[$name], $url);
       }
     }    
     
 //    return $_SERVER['SCRIPT_NAME'] . $url;
     return $url;
   }
+
+  private function findRouteByName($routeName)
+  {
+    foreach($this->patterns as $pattern) {
+      if(isset($pattern['name']) && $pattern['name'] === $routeName) {
+        return $pattern;
+      }
+    }
+
+    throw new \Exception("Route $routeName not found.");
+  }
   
   protected function matchToken($field, $token)
   {
-    if(empty($token['name'])) {
-      if($token['value'] == $field) {
-        return true;
-      }
+    if($token['type'] === self::TOKEN_PATH) {
+      return $token['value'] === $field;
     } else {
-      $token['value'] = $field;
-      return $token;
+      return $field;
     }
-    return false;
   }
 
  /**
@@ -122,15 +141,15 @@ class Parser
   * Each token is an array of two elements:
   *
   * array(
-  *   'name' => string // name of Parameter-Token or empty string for Path-Token
-  *   'value' => string // empty string for Parameter-Token or 'path' value of Path-Token 
+  *   'type' => string // 'parameter' or 'path'
+  *   'value' => string // value of Parameter-Token or Path-Token 
   * )
   *
   * Example:
   *  /guestbook/:id/delete
   *
-  *  'guestbook' -> array('name' => '', 'value' => 'guestbook')
-  *  ':id'       -> array('name' => 'id', 'value' => '')
+  *  'guestbook' -> array('type' => self::TOKEN_PARAMETER, 'value' => 'guestbook')
+  *  ':id'       -> array('type' => self::TOKEN_PATH, value' => 'id')
   *
   *
   * @return array Tokenized pattern
@@ -146,9 +165,9 @@ class Parser
       $first_char = substr($raw_token, 0, 1);
       
       if(':' == $first_char) {
-        $tokens[] = array('name' => substr($raw_token,1), 'value' => '');
+        $tokens[] = array('type' => self::TOKEN_PARAMETER, 'value' => substr($raw_token,1));
       } else {
-        $tokens[] = array('name' => '', 'value' => $raw_token);
+        $tokens[] = array('type' => self::TOKEN_PATH, 'value' => $raw_token);
       }
     }
     
