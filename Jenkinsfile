@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'php' } }
+    agent { docker { image 'composer' } }
     stages {
         stage('build') {
             steps {
@@ -9,7 +9,7 @@ pipeline {
         }
         stage('test') {
             steps {
-                sh 'phpunit'
+                sh './vendor/bin/phpunit'
             }
         }
     }
