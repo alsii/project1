@@ -9,8 +9,13 @@ pipeline {
         }
         stage('test') {
             steps {
-                sh './vendor/bin/phpunit'
+                sh './vendor/bin/phpunit --log-junit build/reports/test.xml'
             }
+        }
+    }
+    post {
+        always {
+            junit 'build/reports/*.xml'
         }
     }
 }
