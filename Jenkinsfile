@@ -4,7 +4,7 @@ pipeline {
         stage('build') {
             steps {
                 sh 'php --version'
-                sh 'composer up'
+                sh '/usr/local/bin/composer up'
             }
         }
         stage('test') {
