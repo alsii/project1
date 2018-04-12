@@ -1,10 +1,10 @@
 pipeline {
-    agent { docker { image 'php' } }
+    agent { docker { image 'composer' } }
     stages {
         stage('build') {
             steps {
                 sh 'php --version'
-                sh '/usr/local/bin/composer up'
+                sh 'composer up'
             }
         }
         stage('test') {
