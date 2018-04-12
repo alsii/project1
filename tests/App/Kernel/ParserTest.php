@@ -110,6 +110,7 @@ final class ParserTest extends TestCase
             ['order-item-show', ['order-id' => 42, 'item-id' => 21], '/order/42/item/21'],
             ['order-item-show', ['order-id' => 42, 'id' => 21], false],
             ['order-item-show', ['order-id' => 42], false],
+            ['order-item-show', ['order-id' => 43], true],
         ];
     }
 }
