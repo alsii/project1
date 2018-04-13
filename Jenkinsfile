@@ -1,4 +1,5 @@
 pipeline {
+    agent none
     stages {
         stage('Test all available PHP versions') {
             parallel {
