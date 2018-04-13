@@ -1,6 +1,6 @@
 pipeline {
     stages {
-        stage ('Test All')
+        stage ('Test all PHP versions')
         parallel {
             stage('test-5.6') {
                 agent { docker { image 'php-composer:5.6' } }
