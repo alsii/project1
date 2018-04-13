@@ -8,6 +8,7 @@ pipeline {
                     steps {
                         sh 'php --version'
                         sh 'composer up'
+                        sh 'composer require phpunit/phpunit ^5.0'
                         sh './vendor/bin/phpunit --log-junit build/reports/test.xml'
                     }
                 }
