@@ -8,8 +8,13 @@ pipeline {
                     steps {
                         sh 'php --version'
                         sh 'composer require phpunit/phpunit ^5.0'
-                        sh 'composer up'
+                        sh 'composer install'
                         sh './vendor/bin/phpunit --log-junit build/reports/test.xml'
+                    }
+                    post {
+                        always {
+                            junit 'build/reports/*.xml'
+                        }
                     }
                 }
                 stage('test-7.0') {
@@ -19,6 +24,11 @@ pipeline {
                         sh 'composer up'
                         sh './vendor/bin/phpunit --log-junit build/reports/test.xml'
                     }
+                    post {
+                        always {
+                            junit 'build/reports/*.xml'
+                        }
+                    }
                 }
                 stage('test-7.1') {
                     agent { docker { image 'php-composer:7.1' } }
@@ -26,6 +36,11 @@ pipeline {
                         sh 'php --version'
                         sh 'composer up'
                         sh './vendor/bin/phpunit --log-junit build/reports/test.xml'
+                    }
+                    post {
+                        always {
+                            junit 'build/reports/*.xml'
+                        }
                     }
                 }
                 stage('test-7.2') {
@@ -35,13 +50,13 @@ pipeline {
                         sh 'composer up'
                         sh './vendor/bin/phpunit --log-junit build/reports/test.xml'
                     }
+                    post {
+                        always {
+                            junit 'build/reports/*.xml'
+                        }
+                    }
                 }
             }
-        }
-    }
-    post {
-        always {
-            junit 'build/reports/*.xml'
         }
     }
 }
