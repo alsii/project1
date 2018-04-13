@@ -7,8 +7,8 @@ pipeline {
                     agent { docker { image 'php-composer:5.6' } }
                     steps {
                         sh 'php --version'
-                        sh 'composer up'
                         sh 'composer require phpunit/phpunit ^5.0'
+                        sh 'composer up'
                         sh './vendor/bin/phpunit --log-junit build/reports/test.xml'
                     }
                 }
